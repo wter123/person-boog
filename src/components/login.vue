@@ -17,7 +17,7 @@
                         </div>
                         <br/>
                         <button type="button" class="btn btn-success btn-block" v-on:click="wsLogin">登录</button>
-                    </form>{{login_status}}
+                    </form>
                     <div class="text-right" >
                 	<router-link to="/register"><a>未有账号？立即登录</a></router-link>
             	</div>
@@ -34,7 +34,6 @@
       return {
         username: '',
         password: '',
-            login_status:"登录"
       }
     },
     methods: {
@@ -54,8 +53,6 @@
             sessionStorage.setItem('token', response.data.token);
             let flag = true;
           this.$store.dispatch('login', flag)
-            console.log("登录成功");
-            console.log("登錄狀態",this.$store.state.islogin)
             that.$router.push('/Home')
             
           }
@@ -63,18 +60,7 @@
           console.log("",error)
         })
       }
-    },watch: {
-    '$store.state.islogin': function () {
-            console.log("登錄true or false",this.$store.state.islogin)
-      if(this.$store.state.islogin==true){
-                    console.log("登錄狀態狀態",this.$store.state.islogin)
-    this.login_status="已登录"}
-    else if (this.$store.state.islogin==false){
-                     console.log("登錄狀態",this.$store.state.islogin)
-    this.login_status="登录"
     }
-    },deep:true,immediate: true
-  },
   }
 </script>
 

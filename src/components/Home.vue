@@ -3,7 +3,7 @@
  
     <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
       <div class="position1">
-        <label class="font-type">个人博客</label>
+        <label class="font-type">道一的个人博客</label>
       </div>
       <div class="position1">
         <label class="font-type">这是标题一</label>
