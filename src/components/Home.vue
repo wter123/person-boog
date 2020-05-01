@@ -1,22 +1,23 @@
 <template>
     <div class="Home">
  
-    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation"  >
       <div class="position1">
         <label class="font-type">道一的个人博客</label>
       </div>
       <div class="position1">
-        <label class="font-type">这是标题一</label>
+        <router-link to="/Home/a">联系我</router-link>
+        
       </div>
       <div class="position1">
-        <label class="font-type">这是标题一</label>
+        <router-link to="/Home/b">合作</router-link>
       </div>
       <div class="position1">
         <label class="font-type">这是标题一</label>
       </div>
       <div class="position1">
         <label class="font-type"></label>
-        <span style="color:#ffffff;font-size:12px"  v-if="$store.state.islogin">已登录</span><a href="/login" v-else>登录</a><span style="color:#337ab7">/</span><a href="/register">注册</a>
+        <span style="color:#C0C0C0;font-size:12px"  v-if="$store.state.islogin">已登录</span><a href="/login" v-else>登录</a><span style="color:#337ab7">/</span><a href="/register">注册</a>
  
       </div>   
      </div> 
@@ -24,7 +25,7 @@
        
      </div>
 <!-- 侧滑菜单 -->
-  <div id="wrapper">
+    <div id="wrapper" style="float:left">
         <div class="overlay"></div>
     
         <!-- Sidebar -->
@@ -42,7 +43,7 @@
                     <a href="#"><i class="fa fa-fw fa-folder"></i> 动漫</a>
                 </li>
                 <li>
-                    <a href="./page/pan_sourch/pan.html"><i class="fa fa-fw fa-file-o"></i> 搜索资源引擎</a>
+                    <a href=""><i class="fa fa-fw fa-file-o"></i> 搜索资源引擎</a>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-fw fa-cog"></i> VIP视频</a>
@@ -82,10 +83,10 @@
  
    
         </div>
-        <!-- /#page-content-wrapper -->
- 
+
     </div>
-    </div>
+     <router-view></router-view>
+</div>
 </template>
 
 

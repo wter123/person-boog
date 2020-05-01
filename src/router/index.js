@@ -27,10 +27,25 @@ const routes = [
     },
     {
         path: '/Home',
-        name: 'Home',
+        name: '/Home',
         component: function() {
             return import ('../components/Home.vue')
-        }
+
+        },
+        children: [{
+            path: 'a',
+            component: function() {
+                return import ('../components/child_two/connect_me.vue')
+
+            }
+        }, {
+            path: 'b',
+
+            component: function() {
+                return import ('../components/child_two/partner.vue')
+
+            }
+        }]
     },
     {
         path: '/register',

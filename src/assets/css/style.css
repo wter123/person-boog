@@ -369,6 +369,10 @@ html {
     z-index: 1;
 }
 
+.position1 a:hover {
+    text-decoration: none;
+}
+
 
 /* SOME DEMO STYLES - NOT REQUIRED */
 
