@@ -16,7 +16,7 @@
       </div>
       <div class="position1">
         <label class="font-type"></label>
-        <span style="color:#ffffff;font-size:12px"  v-if="$store.state.islogin">已登录</span><a href="/login" v-else>登录</a><span style="color:#337ab7">/</span><a href="/register">注册</a>
+        <a href="/login">登录</a><span style="color:#337ab7">/</span><a href="/register">注册</a>
  
       </div>   
      </div> 
@@ -65,7 +65,7 @@
                     <a href="#"><i class="fa fa-fw fa-dropbox"></i> Page 5</a>
                 </li>
                 <li>
-                    <a href="#" v-on:click="exit"><i class="fa fa-fw fa-twitter"></i>退出</a>
+                    <a href="#"><i class="fa fa-fw fa-twitter"></i> Last page</a>
                 </li>
                 
             </ul>
@@ -89,50 +89,7 @@
 </template>
 
 
-<script>
- 
- 
-export default{
-data(){
-  return {
-    login_status:"登录",
-  }
-}
-  ,
- 
-        methods: {    
-            exit:function(){ console.log(this.$store.state.islogin)
-            let flag = false; 
-            this.$store.dispatch('login', flag)
-            // this.$router.push("/login");
-            console.log("退出登录");
-            },
- 
-        }
-
-,
-
-watch: {
-    '$store.state.islogin': function () {
-            console.log("登錄true or false",this.$store.state.islogin)
-      if(this.$store.state.islogin==true){
-                    console.log("登錄狀態狀態",this.$store.state.islogin)
-    this.login_status="已登录"}
-    else if (this.$store.state.islogin==false){
-                     console.log("登錄狀態",this.$store.state.islogin)
-    this.login_status="登录"
-    }
-    },deep:true,
-     immediate: true
-  },
- 
-
- 
-    }
-
-
-
-$(document).ready(function() {
+<script>$(document).ready(function() {
     var trigger = $('.hamburger'),
         overlay = $('.overlay'),
         isClosed = false;
@@ -157,9 +114,9 @@ $(document).ready(function() {
     });
 });
 
-
 </script>
- 
+
+
 <style>
 @import "../assets/css/bootstrap.min.css";
 @import "../assets/css/style.css";

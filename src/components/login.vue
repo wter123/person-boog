@@ -1,18 +1,31 @@
-
 <template>
-  <!--模板-->
-  <!--用户名密码验证-->
-  <form novalidate>
-    <label for="username">用户名</label>
-    <input type="text" placeholder="用户名" id="username" v-model="username">
-    <br>
-    <label for="password">密码</label>
-    <input type="password" placeholder="密码" id="password" v-model="password">
-    <br>
-    <button v-on:click="wsLogin" type="button">Login</button>
-  </form>
+    <div class="ws-login">
+
+    
+        <div class="container">
+            <div class="row row-centered">
+                <div class="well    col-centered">
+                    <h2>欢迎登录</h2>
+                    <form  method="POST" role="form">
+                        <div class="input-group input-group-md">
+                            <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" id="userid" v-model="username" name="userid" placeholder="请输入用户ID"/>
+                        </div>
+                        <div class="input-group input-group-md">
+                            <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input type="password" class="form-control" id="password" v-model="password" name="password" placeholder="请输入密码"/>
+                        </div>
+                        <br/>
+                        <button type="button" class="btn btn-success btn-block" v-on:click="wsLogin">登录</button>
+                    </form>{{login_status}}
+                    <div class="text-right" >
+                	<router-link to="/register"><a>未有账号？立即登录</a></router-link>
+            	</div>
+                </div>
+            </div>
+        </div>
+</div>
 </template>
- 
 <script>
   /*js*/
   export default {
@@ -20,7 +33,8 @@
     data: function () {
       return {
         username: '',
-        password: ''
+        password: '',
+            login_status:"登录"
       }
     },
     methods: {
@@ -37,19 +51,61 @@
             that.password = '';
           }else if (parseInt(response.data.code) === 200){
             // 存token
-            console.log("Aaa")
-            // sessionStorage.setItem('token', response.data.token);
-            // 登录成功,跳转到index
+            sessionStorage.setItem('token', response.data.token);
+            let flag = true;
+          this.$store.dispatch('login', flag)
+            console.log("登录成功");
+            console.log("登錄狀態",this.$store.state.islogin)
             that.$router.push('/Home')
+            
           }
         }).catch(function (error) {
-          console.log(error)
+          console.log("",error)
         })
       }
+    },watch: {
+    '$store.state.islogin': function () {
+            console.log("登錄true or false",this.$store.state.islogin)
+      if(this.$store.state.islogin==true){
+                    console.log("登錄狀態狀態",this.$store.state.islogin)
+    this.login_status="已登录"}
+    else if (this.$store.state.islogin==false){
+                     console.log("登錄狀態",this.$store.state.islogin)
+    this.login_status="登录"
     }
+    },deep:true,immediate: true
+  },
   }
 </script>
- 
-<style>
-  /*样式*/
+
+
+<style lang="less" scoped>
+@import "../assets/css/bootstrap.min.css";
+    .container{
+        display:table;
+        width:410px;
+     margin-top:100px ;
+        
+    }
+    .well{
+        width:320px
+    }
+    .row{
+        display: table-cell;
+        vertical-align: middle;
+    }
+    /* centered columns styles */
+    .row-centered {
+        text-align:center;
+    }
+    .col-centered {
+        display:inline-block;
+        float:none;
+        text-align:left;
+        margin-right:-4px;
+        h2{
+            text-align: center;
+        }
+    }
 </style>
+
